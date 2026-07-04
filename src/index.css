@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  VANTERA design tokens                                              */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --color-bg: #0a0a0a;
+  --color-ivory: #f3efe6;
+  --color-gold: #b39a68;
+  --color-hairline: rgb(243 239 230 / 0.12);
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-tech: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+}
+
+:root {
+  --vantera-bg: #0a0a0a;
+  --vantera-ivory: #f3efe6;
+  --vantera-gold: #b39a68;
+  --vantera-hairline: rgb(243 239 230 / 0.12);
+
+  /* Motion character: slow, heavy, precise. */
+  --ease-luxe: cubic-bezier(0.19, 1, 0.22, 1); /* expo-like */
+  --dur-slow: 1.2s;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+
+html {
+  background: var(--vantera-bg);
+  color-scheme: dark;
+  /* `clip` (not `hidden`) — overflow:hidden on html/body breaks
+     GSAP ScrollTrigger pinning. */
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--vantera-bg);
+  color: var(--vantera-ivory);
+  font-family: var(--font-tech);
+  font-weight: 300;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--vantera-gold);
+  color: var(--vantera-bg);
+}
+
+/* Keyboard focus — a quiet gold ring, on brand, clearly visible on black. */
+:focus-visible {
+  outline: 1px solid var(--vantera-gold);
+  outline-offset: 4px;
+}
+
+/* Programmatic focus targets (skip-link destination) need no ring. */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
+/* Skip link — hidden until keyboard-focused, then a small gold-edged card. */
+.skip-link {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.5rem;
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: var(--vantera-bg);
+  border: 1px solid var(--vantera-gold);
+  color: var(--vantera-ivory);
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 2rem));
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline-offset: 2px;
+}
+
+/* Lenis smooth-scroll recommended styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reusable luxury primitives                                         */
+/* ------------------------------------------------------------------ */
+
+/* Small uppercase label — gold, generous letter-spacing */
+.label-luxe {
+  font-family: var(--font-tech);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--vantera-gold);
+}
+
+/* Huge thin numeral / figure */
+.numeral-luxe {
+  font-family: var(--font-tech);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--vantera-ivory);
+}
+
+.hairline {
+  border-color: var(--vantera-hairline);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reduced motion                                                     */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
