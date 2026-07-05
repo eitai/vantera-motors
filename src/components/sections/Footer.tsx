@@ -38,6 +38,17 @@ export default function Footer() {
         <p className="mt-3 text-[0.62rem] uppercase tracking-[0.3em] text-ivory/50">
           © {new Date().getFullYear()} Vantera Motors — a fiction, faithfully engineered.
         </p>
+        <p className="mt-2 text-[0.62rem] uppercase tracking-[0.3em] text-ivory/50">
+          Site crafted by{" "}
+          <a
+            href="https://www.enmstudio.co.il/?utm_source=vantera-demo&utm_medium=footer-credit"
+            target="_blank"
+            rel="noopener"
+            className="text-gold/80 transition-colors duration-500 hover:text-gold"
+          >
+            E&M Studio
+          </a>
+        </p>
       </div>
     </footer>
   )
